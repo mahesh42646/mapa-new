@@ -63,7 +63,7 @@ const Login = () => {
     <div className="container" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#fff' }}>
       {/* Login Form */}
       <div style={{ width: 392, padding: 32, borderRadius: 12, background: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <h2 style={{ marginBottom: 24, fontWeight: 600 }}>Hello again!</h2>
+        <h2 style={{ marginBottom: 24, fontWeight: 600 }}>Olá novamente!</h2>
         
         <form onSubmit={handleSubmit} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 16 }} noValidate>
           {error && (
@@ -84,7 +84,7 @@ const Login = () => {
           )}
 
           <div style={{ width: '100%' }}>
-            <label style={{ fontSize: 12, color: '#888' }}>Your email</label>
+            <label style={{ fontSize: 12, color: '#888' }}>Seu e-mail</label>
             <input 
               id="email"
               name="email"
@@ -106,7 +106,7 @@ const Login = () => {
           </div>
           
           <div style={{ width: '100%' }}>
-            <label style={{ fontSize: 12, color: '#888' }}>Your password</label>
+            <label style={{ fontSize: 12, color: '#888' }}>Sua senha</label>
             <div style={{ position: 'relative' }}>
               <input 
                 id="password"
@@ -183,7 +183,7 @@ const Login = () => {
               alert('Forgot password functionality coming soon!');
             }}
           >
-            Forgot password?
+           Esqueceu sua senha?
           </button>
         </div>
       </div>

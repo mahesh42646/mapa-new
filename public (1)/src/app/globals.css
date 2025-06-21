@@ -1,0 +1,20 @@
+/* Import Poppins font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Apply Poppins font to all relevant elements */
+body, p, span, h1, h2, h3, h4, h5, h6, div, nav, strong, button, a, input, textarea, select, label, li {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+
+.bg-lite-green {
+  background-color: #ddf8ef;
+}
+.primary-btn{
+  background: var(--primary-main, rgba(0, 167, 111, 1));
+
+}
+
+.form-control::placeholder {
+  color: #adb5bd !important;
+}

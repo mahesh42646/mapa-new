@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 
 const AddTenantModal = ({ show, onClose, onSave }) => {
@@ -59,35 +59,35 @@ const AddTenantModal = ({ show, onClose, onSave }) => {
       }}
     >
       <div style={{ background: 'white', borderRadius: 16, padding: 32, minWidth: 380, boxShadow: '0 2px 16px rgba(0,0,0,0.08)', border: '1px solid #e5e5e5' }}>
-        <h5 className="mb-3 fw-semibold">Add New Tenant</h5>
+        <h5 className="mb-3 fw-semibold">Adicionar Novo Usuário</h5>
         <div className="mb-3">
-          <label className="form-label mb-1">Tenant Name <span className=" text-secondary">(Required)</span></label>
-          <input className="form-control" placeholder="Enter Tenant Name here..." value={tenantName} onChange={e => setTenantName(e.target.value)} />
+          <label className="form-label mb-1">Nome do Usuário <span className=" text-secondary">(Obrigatório)</span></label>
+          <input className="form-control" placeholder="Digite o nome do usuário aqui..." value={tenantName} onChange={e => setTenantName(e.target.value)} />
         </div>
         <div className="mb-3">
-          <label className="form-label mb-1">Subdomain <span className=" text-secondary">(Required)</span></label>
-          <input className="form-control" placeholder="Enter Subdomain here..." value={subdomain} onChange={e => setSubdomain(e.target.value)} />
+          <label className="form-label mb-1">Subdomínio <span className=" text-secondary">(Obrigatório)</span></label>
+          <input className="form-control" placeholder="Digite o subdomínio aqui..." value={subdomain} onChange={e => setSubdomain(e.target.value)} />
         </div>
         <div className="row mb-3">
           <div className="col">
-            <label className="form-label mb-1">Email <span className=" text-secondary">(Required)</span></label>
+            <label className="form-label mb-1">E-mail <span className=" text-secondary">(Obrigatório)</span></label>
             <input className="form-control" placeholder="admin@cactuspdv.com" value={email} onChange={e => setEmail(e.target.value)} />
           </div>
           <div className="col">
-            <label className="form-label mb-1">Password <span className=" text-secondary">(Required)</span></label>
-            <input className="form-control" type="password" placeholder="Enter Password here..." value={password} onChange={e => setPassword(e.target.value)} />
+            <label className="form-label mb-1">Senha <span className=" text-secondary">(Obrigatório)</span></label>
+            <input className="form-control" type="password" placeholder="Digite a senha aqui..." value={password} onChange={e => setPassword(e.target.value)} />
           </div>
         </div>
         <div className="d-flex align-items-center mb-4">
-          <span className="me-2">Active</span>
+          <span className="me-2">Ativos</span>
           <div className="form-check form-switch">
             <input className="form-check-input" type="checkbox" checked={active} onChange={() => setActive(!active)} />
           </div>
         </div>
         <div className="d-flex justify-content-end gap-2">
-          <button className="btn btn-light px-4" onClick={onClose} disabled={loading}>Close</button>
+            <button className="btn btn-light px-4" onClick={onClose} disabled={loading}>Fechar</button>
           <button className="btn px-4" style={{ background: '#70B56A', color: 'white', fontWeight: 500 }} onClick={handleSave} disabled={loading}>
-            {loading ? 'Saving...' : 'Save'}
+            {loading ? 'Salvando...' : 'Salvar'}
           </button>
         </div>
       </div>
@@ -151,25 +151,25 @@ const UpdateTenantModal = ({ show, onClose, onSave, initialTenant }) => {
       }}
     >
       <div style={{ background: 'white', borderRadius: 16, padding: 32, minWidth: 500, boxShadow: '0 2px 16px rgba(0,0,0,0.08)', border: '1px solid #e5e5e5' }}>
-        <h5 className="mb-3 fw-semibold">Update Tenant</h5>
+        <h5 className="mb-3 fw-semibold">Atualizar Usuário</h5>
         <div className="mb-3">
-          <label className="form-label mb-1">Tenant Name <span className=" text-secondary">(Required)</span></label>
+          <label className="form-label mb-1">Nome do Usuário <span className=" text-secondary">(Obrigatório)</span></label>
           <input className="form-control" placeholder="Enter Tenant Name here..." value={tenantName} onChange={e => setTenantName(e.target.value)} />
         </div>
         <div className="mb-3">
-          <label className="form-label mb-1">Email</label>
+          <label className="form-label mb-1">E-mail</label>
           <input className="form-control" placeholder="Enter Email here..." value={email} onChange={e => setEmail(e.target.value)} />
         </div>
         <div className="d-flex align-items-center mb-4">
-          <span className="me-2">Active</span>
+          <span className="me-2">Ativos</span>
           <div className="form-check form-switch">
             <input className="form-check-input" type="checkbox" checked={active} onChange={() => setActive(!active)} />
           </div>
         </div>
         <div className="d-flex justify-content-end gap-2">
-          <button className="btn btn-light px-4" onClick={onClose} disabled={loading}>Close</button>
+          <button className="btn btn-light px-4" onClick={onClose} disabled={loading}>Fechar</button>
           <button className="btn px-4" style={{ background: '#70B56A', color: 'white', fontWeight: 500 }} onClick={handleSave} disabled={loading}>
-            {loading ? 'Updating...' : 'Save'}
+            {loading ? 'Atualizando...' : 'Salvar'}
           </button>
         </div>
       </div>
@@ -198,20 +198,20 @@ const DeleteTenantModal = ({ show, onClose, onDelete, selectedTenant }) => {
       }}
     >
       <div style={{ background: 'white', borderRadius: 16, padding: 32, minWidth: 420, boxShadow: '0 2px 16px rgba(0,0,0,0.08)', border: '1px solid #e5e5e5', textAlign: 'center' }}>
-        <h5 className="fw-semibold mb-1">Are you sure ?</h5>
-        <div className="text-secondary mb-3" style={{ fontSize: 16 }}>This action is irreversible</div>
+        <h5 className="fw-semibold mb-1">Tem certeza?</h5>
+        <div className="text-secondary mb-3" style={{ fontSize: 16 }}>Esta ação é irreversível</div>
         <div className="alert d-flex align-items-center mb-4" style={{ background: '#ffeaea', color: '#b91c1c', border: 'none', borderRadius: 12, padding: '12px 16px' }}>
           <div>
             <div className='d-flex align-items-center justify-content-center' >
               <i className="bi bi-exclamation-triangle-fill me-2" style={{ fontSize: 22 }}></i>
-              <div className="fw-semibold">Warning</div>
+              <div className="fw-semibold">Atenção</div>
             </div>
-            <div style={{ fontSize: 15 }}>All accounts associated with &quot;{selectedTenant?.tenantName}&quot; will be permanently deleted</div>
+            <div style={{ fontSize: 15 }}>Todos os usuários associados com &quot;{selectedTenant?.tenantName}&quot; serão permanentemente deletados</div>
           </div>
         </div>
         <div className="d-flex justify-content-center gap-3 mt-2">
-          <button className="btn btn-light px-4" onClick={onClose}>Cancel</button>
-          <button className="btn px-4" style={{ background: '#d32f2f', color: 'white', fontWeight: 500 }} onClick={onDelete}>Yes, Delete</button>
+          <button className="btn btn-light px-4" onClick={onClose}>Cancelar</button>
+          <button className="btn px-4" style={{ background: '#d32f2f', color: 'white', fontWeight: 500 }} onClick={onDelete}>Sim, Deletar</button>
         </div>
       </div>
     </div>
@@ -241,22 +241,22 @@ const FilterModal = ({ show, onClose, onApply, from, to, setFrom, setTo }) => {
       <div style={{ background: 'white', borderRadius: 16, padding: 32, minWidth: 370, boxShadow: '0 2px 16px rgba(0,0,0,0.08)', border: '1px solid #e5e5e5' }}>
         <div className="d-flex align-items-center mb-2">
           <i className="bi bi-funnel me-2" style={{ fontSize: 20, color: '#444' }}></i>
-          <h5 className="fw-semibold mb-0">Filter</h5>
+          <h5 className="fw-semibold mb-0">Filtrar</h5>
         </div>
-        <div className="text-secondary mb-3" style={{ fontSize: 15 }}>Filter by date range</div>
+        <div className="text-secondary mb-3" style={{ fontSize: 15 }}>Filtrar por data</div>
         <div className="row mb-4">
           <div className="col">
-            <label className="form-label mb-1">From</label>
+            <label className="form-label mb-1">De</label>
             <input className="form-control" type="date" value={from} onChange={e => setFrom(e.target.value)} />
           </div>
           <div className="col">
-            <label className="form-label mb-1">To</label>
+            <label className="form-label mb-1">Até</label>
             <input className="form-control" type="date" value={to} onChange={e => setTo(e.target.value)} />
           </div>
         </div>
         <div className="d-flex justify-content-end gap-2">
           <button className="btn btn-light px-4" onClick={onClose}>Close</button>
-          <button className="btn btn-light px-4" style={{ fontWeight: 500 }} onClick={onApply}>Apply</button>
+          <button className="btn btn-light px-4" style={{ fontWeight: 500 }} onClick={onApply}>Aplicar</button>
         </div>
       </div>
     </div>
@@ -289,8 +289,8 @@ const TenantsPage = () => {
     };
   };
 
-  // Fetch tenants from API
-  const fetchTenants = async (filters = {}) => {
+  // Wrap fetchTenants in useCallback
+  const fetchTenants = useCallback(async (filters = {}) => {
     setLoading(true);
     try {
       const queryParams = new URLSearchParams();
@@ -320,11 +320,11 @@ const TenantsPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []); // Empty dependency array since this function doesn't depend on any props or state
 
   useEffect(() => {
     fetchTenants();
-  }, []);
+  }, [fetchTenants]);
 
   const handleSave = async (tenantData) => {
     try {
@@ -435,19 +435,19 @@ const TenantsPage = () => {
       <div className="row g-4 mb-4">
         <div className="col">
           <div className="bg-white rounded-5 border p-4 text-center">
-            <div className="text-secondary" style={{ fontSize: 16 }}>Active</div>
+            <div className="text-secondary" style={{ fontSize: 16 }}>Ativos</div>
             <div className="fw-bold" style={{ fontSize: 32, color: '#70B56A' }}>{stats.active}</div>
           </div>
         </div>
         <div className="col">
           <div className="bg-white rounded-5 border p-4 text-center">
-            <div className="text-secondary" style={{ fontSize: 16 }}>Inactive</div>
+            <div className="text-secondary" style={{ fontSize: 16 }}>Inativos</div>
             <div className="fw-bold" style={{ fontSize: 32, color: '#333' }}>{stats.inactive}</div>
           </div>
         </div>
         <div className="col">
           <div className="bg-white rounded-5 border p-4 text-center">
-            <div className="text-secondary" style={{ fontSize: 16 }}>All</div>
+            <div className="text-secondary" style={{ fontSize: 16 }}>Todos</div>
             <div className="fw-bold" style={{ fontSize: 32, color: '#333' }}>{stats.total}</div>
           </div>
         </div>
@@ -460,7 +460,7 @@ const TenantsPage = () => {
             <input
               type="text"
               className="form-control bg-light border-0 "
-              placeholder="Search"
+              placeholder="Pesquisar"
               value={searchTerm}
               onChange={handleSearch}
               style={{
@@ -480,17 +480,17 @@ const TenantsPage = () => {
               <i className="bi bi-funnel"></i>
             </span>
           </div>
-          <button className="btn text-white" style={{ borderRadius: 20, fontWeight: 500, backgroundColor: '#70B56A', }}>Export Active Tenants</button>
+          <button className="btn text-white" style={{ borderRadius: 20, fontWeight: 500, backgroundColor: '#70B56A', }}>Export Ativos Tenants</button>
         </div>
 
         <div className="table-responsive">
           <table className="table align-middle mb-0">
             <thead>
               <tr className='text-center'>
-                <th className=' col-4' style={{ border: 'none', paddingBottom: '20px' }}>Tenant Details</th>
+                <th className=' col-4' style={{ border: 'none', paddingBottom: '20px' }}>Usuário</th>
                 <th className=' col-2' style={{ border: 'none', paddingBottom: '20px' }}>Status</th>
-                <th className=' col-3' style={{ border: 'none', paddingBottom: '20px' }}>Subscription Start</th>
-                <th className=' col-3' style={{ border: 'none', paddingBottom: '20px' }}>Actions</th>
+                <th className=' col-3' style={{ border: 'none', paddingBottom: '20px' }}>Início da assinatura</th>
+                <th className=' col-3' style={{ border: 'none', paddingBottom: '20px' }}>Ação</th>
               </tr>
             </thead>
             <tbody>
@@ -596,7 +596,7 @@ const TenantsPage = () => {
             <ul className="pagination mb-0 ">
               <li className="page-item disabled"><span className="page-link">&laquo;</span></li>
               <li className="page-item disabled"><span className="page-link">&lsaquo;</span></li>
-              <li className="page-item active"><span className="page-link border-0" style={{ backgroundColor: '#f7f7f7', color: 'black' }}>Showing {tenants.length} of {stats.total}</span></li>
+              <li className="page-item active"><span className="page-link border-0" style={{ backgroundColor: '#f7f7f7', color: 'black' }}>Mostrando {tenants.length} de {stats.total}</span></li>
               <li className="page-item disabled"><span className="page-link">&rsaquo;</span></li>
               <li className="page-item disabled"><span className="page-link">&raquo;</span></li>
             </ul>
